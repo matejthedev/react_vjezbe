@@ -1,45 +1,26 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Users from './components/Users'
+import Photos from './components/Photos'
 
 function App() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState("users")
 
-  useEffect(() => {
-    console.log("App mounted")
-  }, [])
+  // useEffect(() => {
+  //   console.log("App mounted")
+  // }, [])
   return (
-    <div className="App">
-      <button onClick={() => setIsVisible(prev => !prev)}>click</button>
-      <button onClick={() => setCount(prev => prev + 1)}>number up</button>
+    <>  
+    <button onClick={() => setPage("users")}>Users</button>
+    <button onClick={() => setPage("photos")}>Photos</button>
       {
-        isVisible && <Kompa />
+        page === "users" && <Users />
       }
-      <h2>{count}</h2>
-    </div>
+      {
+        page === "photos" && <Photos />
+      }
+    </>
   )
 }
 
 export default App
-
-
-const Kompa = () => {
-  useEffect(() => {
-    // console.log("Kompa mounted")
-
-    const interval = setInterval(() => {
-      console.log("Kompin interval")
-    }, 1000)
-
-    return () => {
-      clearInterval(interval)
-      console.log("cleared")
-    }
-
-  })
-  return(
-    <div>
-      Kompa
-    </div>
-  )
-}
