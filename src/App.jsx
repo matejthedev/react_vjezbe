@@ -4,7 +4,7 @@ import Users from './components/Users'
 import Photos from './components/Photos'
 
 function App() {
-  const [page, setPage] = useState("users")
+  const [page, setPage] = useState()
 
   // useEffect(() => {
   //   console.log("App mounted")

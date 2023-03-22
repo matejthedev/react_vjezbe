@@ -1,22 +1,20 @@
 import { useState, useEffect } from 'react'
+import UserCard from './UserCard'
 
 const Users = () => {
-  const [ users, setUsers ] = useState([])
+  const [ users, setUsers ] = useState()
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
     .then(res => res.json())
     .then(data => setUsers(data))
   },[])
   return(
-    <>
+    <div>
     {
-      users.length && 
-      <div>
-        <h2>{users[0].name}</h2>
-        <h3>{users[0].address.city}</h3>
-      </div>
+      users &&
+      users.map(({id, name, address}) => <UserCard key={id} name={name} city={address.city} />)
     }
-    </>
+    </div>
   )
 }
 
