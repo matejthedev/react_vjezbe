@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import PhotosCard from "./PhotosCard"
 
 const Photos = () => {
   const [ photos, setPhotos ] = useState([])
@@ -11,10 +12,7 @@ const Photos = () => {
     <>
     {
       photos.length && 
-      <div>
-        <h2>{photos[0].title}</h2>
-        <img src={photos[0].thumbnailUrl} />
-      </div>
+      photos.slice(0, 10).map(({id, title, thumbnailUrl}) => <PhotosCard key={id} id={id} title={title} thumbnailUrl={thumbnailUrl} /> )
     }
     </>
   )
